@@ -51,8 +51,6 @@ void payment();//starting
 void tryAgain();//done
 
 //deleterecord funcs--------------------------------------------------------------------------------------------------------------
-void getInputWithoutExtension(char *input, size_t size, const char *prompt);
-void getInput(char *input, size_t size, const char *prompt, const char *fileExtensions);
 void removeDataFromFile(const char *inputFile, const char *outputFile, const char *dataToRemove);
 void deleterecords();
 
@@ -750,20 +748,18 @@ void removeDataFromFile(const char *inputFile, const char *outputFile, const cha
 
     printf("Data removed successfully.\n");
 }
-
 // Function to handle the deletion of records
 void deleterecords() {
-    char inputFile[MAX_LINE_LENGTH];
+    char inputFile[] = "tenant_records.txt"; // Fixed input file name
     char dataToRemove[MAX_LINE_LENGTH];
     char password[20];
     int counter = 0;
 
-    // Get input for the input file name and data to remove
+    // Get input for the data to remove
     system("cls");
     displayMessage();
     printf("\n");
-    printAvailableFiles();
-    getInput(inputFile, sizeof(inputFile), "Enter the input file name", ".txt or .csv");
+    printf("Deleting in file: %s\n", inputFile);  // Print the fixed input file name
     getInputWithoutExtension(dataToRemove, sizeof(dataToRemove), "Enter the data to remove");
 
     // Generate the output file name based on the input file name
@@ -788,6 +784,7 @@ void deleterecords() {
         printf("Maximum attempts reached!\n");
     }
 }
+
 //END---------------------------------------------------------------------------------------------------------------------------
 
 
